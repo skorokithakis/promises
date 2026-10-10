@@ -1,0 +1,20 @@
+<!doctype html>
+<!--
+  Must exist. Without a top-level 404.html, Cloudflare Pages treats the site as
+  a single-page app and answers every missing path with index.html and status
+  200. The service worker then caches that HTML in place of a JS file that has
+  not finished deploying, and the app stays blank until the cache is flushed.
+  With this file, missing paths get a real 404, so the service worker install
+  fails cleanly and retries later. The app uses hash routes, so it does not
+  need the fallback.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Not found · Promises</title>
+  </head>
+  <body style="margin: 0; padding: 48px 24px; background: #f3f3f0; color: #18191b; font-family: Georgia, serif; text-align: center">
+    <p>This page does not exist. <a href="/" style="color: inherit">Go to Promises</a>.</p>
+  </body>
+</html>

@@ -37,6 +37,12 @@ export default defineConfig({
         // that supports service workers picks it over the woff fallback. The
         // icons are precached through `includeAssets` and the manifest icons.
         globPatterns: ['**/*.{js,css,html,woff2}'],
+        globIgnores: ['404.html'],
+        // Names the precache. Changing it makes every client download all
+        // files again and delete the old precache. It was set (replacing the
+        // default "workbox") to flush copies poisoned before public/404.html
+        // existed; bump it again if a bad entry ever reaches clients.
+        cacheId: 'promises',
       },
       // The dev server does not need a service worker.
       devOptions: { enabled: false },
