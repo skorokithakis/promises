@@ -242,7 +242,7 @@ export function PromiseItem({ promise, now }: { promise: PromiseRecord; now: Dat
   const label = `${kept ? 'Kept: ' : 'Keep this promise: '}${promise.text}`
   const meta = kept
     ? keptMeta(promise)
-    : { mobile: openMetaMobile(promise, now), desktop: openMetaDesktop(promise, now) }
+    : { mobile: openMetaMobile(promise), desktop: openMetaDesktop(promise, now) }
 
   return (
     <li class="promise">

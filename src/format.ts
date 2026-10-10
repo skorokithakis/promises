@@ -90,11 +90,9 @@ export function hallLine(broken: number): string {
     : `${broken} broken promises rest in the hall`
 }
 
-/** Open promise meta on small screens: `Promised 9 Oct · 29 days of ink left`. */
-export function openMetaMobile(promise: PromiseRecord, now: Date): string {
-  return `Promised ${formatShortDate(new Date(promise.createdAt))} · ${pluralDays(
-    daysLeft(promise, now),
-  )} of ink left`
+/** Open promise meta on small screens: `Promised 9 Oct`. No countdown, on purpose. */
+export function openMetaMobile(promise: PromiseRecord): string {
+  return `Promised ${formatShortDate(new Date(promise.createdAt))}`
 }
 
 /** Open promise meta on wide screens: `Promised 9 Oct · 29 days left`. */

@@ -78,13 +78,8 @@ describe('hallLine', () => {
 })
 
 describe('promise meta lines', () => {
-  it('uses the mobile ink wording and handles the singular day', () => {
-    expect(openMetaMobile(make({ createdAt: at(2026, 9, 9) }), at(2026, 9, 10))).toBe(
-      'Promised 9 Oct · 29 days of ink left',
-    )
-    expect(openMetaMobile(make({ createdAt: at(2026, 8, 11) }), at(2026, 9, 10))).toBe(
-      'Promised 11 Sep · 1 day of ink left',
-    )
+  it('shows only the promise date on mobile', () => {
+    expect(openMetaMobile(make({ createdAt: at(2026, 9, 9) }))).toBe('Promised 9 Oct')
   })
 
   it('uses the shorter desktop wording', () => {
