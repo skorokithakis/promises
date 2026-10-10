@@ -1,0 +1,33 @@
+/*
+ * Design tokens for the Promises app.
+ *
+ * Theme-agnostic tokens live on :root. The light theme is the default and is
+ * also applied explicitly via [data-theme='light']. The dark "hall" theme
+ * overrides the palette when [data-theme='hall'] is set on any ancestor
+ * (normally <html> or the screen root).
+ *
+ * `--fg` is a semantic alias so shared styles can use one foreground variable
+ * regardless of the theme's token name (--ink in light, --text in the hall).
+ */
+:root {
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  --bg: #f3f3f0;
+  --ink: #18191b;
+  --muted: #5e6064;
+  --rule: #e2e2de;
+  --rule-strong: #d4d4cf;
+  --placeholder: #9a9b9e;
+  --fg: var(--ink);
+}
+
+:root[data-theme='hall'] {
+  --bg: #0f0f10;
+  --text: #d8d1c3;
+  --muted: #9a9488;
+  --rule: #22211f;
+  --border: #2e2d2a;
+  --flame: #e3a857;
+  --fg: var(--text);
+}

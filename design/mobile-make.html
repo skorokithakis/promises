@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Make a promise</title>
+<script src="4a652be8-6779-42cb-8d03-fe14b95fc766"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style></style>
+<style>
+body{margin:0;background:#F3F3F0}
+a{color:#18191B}a:hover{color:#000}
+textarea::placeholder{color:#9A9B9E}
+textarea:focus{outline:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F3F0; color: #18191B; font-family: 'Newsreader', Georgia, serif; display: flex; flex-direction: column; padding: 20px 24px 28px">
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <a href="Main.dc.html" style="min-height: 44px; display: flex; align-items: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: #5E6064; text-decoration: none">Cancel</a>
+  </div>
+
+  <form style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 20px; padding-top: 56px">
+    <label for="promise" style="font-size: 18px; font-style: italic; color: #5E6064">I promise to</label>
+    <textarea id="promise" rows="4" value="{{draft}}" sc-camel-on-change="{{onDraft}}" placeholder="finally fix that tap" style="width: 100%; box-sizing: border-box; border: 0; border-bottom: 1px solid #18191B; background: transparent; resize: none; padding: 0 0 12px; font-family: 'Newsreader', Georgia, serif; font-size: 34px; line-height: 1.2; color: #18191B"></textarea>
+
+    <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 8px">
+      <div style="display: flex; gap: 3px" aria-hidden="true">
+        <sc-for list="{{days}}" as="d" hint-placeholder-count="30">
+          <span style="{{d.style}}"></span>
+        </sc-for>
+      </div>
+      <p style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; line-height: 1.6; color: #5E6064">This promise has 30 days of ink. Each day it fades a little. Keep it, or it goes to the hall of broken promises, forever.</p>
+    </div>
+  </form>
+
+  <a href="Promised.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 28px; background: #18191B; color: #F3F3F0; text-decoration: none; font-size: 19px; font-style: italic">I promise</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var days = [];
+    for (var i = 0; i < 30; i++) {
+      var a = (1 - i / 30) * 0.88 + 0.12;
+      days.push({ style: 'flex: 1 1 0; height: 14px; border-radius: 1px; background: rgba(24,25,27,' + a.toFixed(3) + ')' });
+    }
+    return {
+      days: days,
+      draft: (this.state && this.state.draft) || '',
+      onDraft: function (e) { self.setState({ draft: e.target.value }); }
+    };
+  }
+}
+</script>
+
+
+</body></html>

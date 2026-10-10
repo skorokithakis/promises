@@ -1,0 +1,490 @@
+/*
+ * Dark "hall" screens: the hall of broken promises and the broken-promise
+ * detail. Base rules are the mobile layout; a single 768px breakpoint switches
+ * to desktop, matching design/mobile-hall.html and design/desktop-hall.html
+ * (and the matching broken references).
+ *
+ * These screens set `data-theme='hall'` on the document root while mounted, so
+ * they read the dark tokens from tokens.css.
+ */
+
+.hall-screen,
+.broken-screen {
+  color: var(--text);
+}
+
+.hall-plaque,
+.broken-back,
+.broken-again {
+  color: var(--text);
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  45% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.7;
+  }
+}
+
+/* --- Hall ------------------------------------------------------------------ */
+
+.hall-screen {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: radial-gradient(
+      ellipse 120% 40% at 50% -6%,
+      rgba(227, 168, 87, 0.16),
+      rgba(15, 15, 16, 0) 70%
+    ),
+    var(--bg);
+}
+
+.hall-header {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 20px 24px 28px;
+}
+
+.hall-back {
+  align-self: flex-start;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.hall-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.hall-flame {
+  width: 22px;
+  height: 30px;
+  animation: flicker 3.2s ease-in-out infinite;
+}
+
+.hall-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+}
+
+.hall-title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+}
+
+.hall-subtitle {
+  margin: 6px 0 0;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.hall-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 32px;
+  overflow-y: auto;
+}
+
+.hall-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hall-plaque {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+}
+
+.hall-plaque__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.hall-plaque__candles {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hall-plaque__text {
+  font-size: 22px;
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+
+.hall-plaque__dates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.hall-footer {
+  display: none;
+}
+
+/* --- Broken detail --------------------------------------------------------- */
+
+.broken-screen {
+  --broken-glow: 0.1;
+  background: radial-gradient(
+      ellipse 110% 50% at 50% 100%,
+      rgba(227, 168, 87, var(--broken-glow)),
+      rgba(15, 15, 16, 0) 70%
+    ),
+    var(--bg);
+  transition: background 600ms;
+}
+
+.broken-screen.is-lit {
+  --broken-glow: 0.26;
+}
+
+.broken-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px 28px;
+}
+
+.broken-back {
+  align-self: flex-start;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.broken-article {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.broken-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+}
+
+.broken-title {
+  margin: 0;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.broken-rule {
+  width: 40px;
+  height: 1px;
+  background: #4a4842;
+}
+
+.broken-meta {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-align: left;
+}
+
+.broken-meta__item {
+  display: contents;
+}
+
+.broken-meta dt {
+  color: var(--muted);
+}
+
+.broken-meta dd {
+  margin: 0;
+}
+
+.broken-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.broken-actions__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.broken-candle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 56px;
+  border-radius: 28px;
+  border: 1px solid #4a4842;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.broken-candle.is-lit,
+.broken-candle:disabled {
+  border-color: var(--flame);
+  color: var(--flame);
+  cursor: default;
+}
+
+.broken-candle__flame {
+  animation: flicker 3.2s ease-in-out infinite;
+}
+
+.broken-candle__label--desktop {
+  display: none;
+}
+
+.broken-again {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  font-size: 17px;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.broken-note {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* --- Desktop layout -------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Hall */
+
+  .hall-screen {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    background: radial-gradient(
+        ellipse 70% 420px at 50% -80px,
+        rgba(227, 168, 87, 0.14),
+        rgba(15, 15, 16, 0) 75%
+      ),
+      var(--bg);
+  }
+
+  .hall-back {
+    display: none;
+  }
+
+  .hall-header {
+    padding: 72px 32px 0;
+    gap: 0;
+  }
+
+  .hall-hero {
+    gap: 14px;
+  }
+
+  .hall-flame {
+    width: 26px;
+    height: 36px;
+  }
+
+  .hall-kicker {
+    font-size: 12px;
+  }
+
+  .hall-title {
+    font-size: 72px;
+  }
+
+  .hall-subtitle {
+    margin: 8px 0 0;
+    font-size: 19px;
+  }
+
+  .hall-main {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 64px 32px 96px;
+    gap: 64px;
+    overflow: visible;
+  }
+
+  .hall-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 16px;
+  }
+
+  .hall-place {
+    display: flex;
+  }
+
+  .hall-plaque {
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: 28px;
+    min-height: 200px;
+    box-sizing: border-box;
+    padding: 24px;
+  }
+
+  .hall-plaque__text {
+    font-size: 25px;
+    line-height: 1.22;
+  }
+
+  .hall-footer {
+    display: block;
+    margin: 0;
+    text-align: center;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* Broken detail */
+
+  .broken-screen {
+    --broken-glow: 0.09;
+  }
+
+  .broken-screen.is-lit {
+    --broken-glow: 0.24;
+  }
+
+  .broken-main {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 40px 32px 72px;
+    gap: 56px;
+  }
+
+  .broken-article {
+    flex: none;
+    gap: 32px;
+    padding: 0;
+  }
+
+  .broken-kicker {
+    font-size: 12px;
+  }
+
+  .broken-title {
+    font-size: 60px;
+    line-height: 1.1;
+  }
+
+  .broken-rule {
+    width: 48px;
+  }
+
+  .broken-meta {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px 40px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .broken-meta__item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .broken-actions {
+    align-items: center;
+    gap: 16px;
+  }
+
+  .broken-actions__buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px 24px;
+  }
+
+  .broken-candle {
+    padding: 0 32px;
+  }
+
+  .broken-candle__label--mobile {
+    display: none;
+  }
+
+  .broken-candle__label--desktop {
+    display: inline;
+  }
+
+  .broken-again {
+    height: 56px;
+    padding: 0 24px;
+    font-size: 19px;
+  }
+
+  .broken-note {
+    font-size: 12px;
+  }
+}

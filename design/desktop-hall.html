@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Hall of broken promises (desktop)</title>
+<script src="6cc0e0aa-1136-4154-a1d7-6a24ee233d27"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style></style>
+<style>
+body{margin:0;background:#0F0F10}
+a{color:#D8D1C3}a:hover{color:#F1EBDD}
+@keyframes flicker{0%,100%{opacity:.85}45%{opacity:1}60%{opacity:.7}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: radial-gradient(ellipse 70% 420px at 50% -80px, rgba(227,168,87,0.14), rgba(15,15,16,0) 75%), #0F0F10; color: #D8D1C3; font-family: 'Newsreader', Georgia, serif">
+  <header style="border-bottom: 1px solid #22211F">
+    <nav aria-label="Main" style="max-width: 1240px; margin: 0 auto; padding: 0 32px; min-height: 72px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="DesktopList.dc.html" style="font-size: 28px; text-decoration: none">Promises</a>
+      <div style="display: flex; gap: 28px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px">
+        <a href="DesktopList.dc.html" style="min-height: 44px; display: flex; align-items: center; text-decoration: none; color: #9A9488">Open</a>
+        <a href="DesktopHall.dc.html" aria-current="page" style="min-height: 44px; display: flex; align-items: center; text-decoration: underline; text-underline-offset: 6px">The hall (31)</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="max-width: 1240px; margin: 0 auto; padding: 72px 32px 96px; display: flex; flex-direction: column; gap: 64px">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+      <svg width="26" height="36" sc-camel-view-box="0 0 22 30" aria-hidden="true" style="animation: flicker 3.2s ease-in-out infinite"><path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857"></path><rect x="7" y="20" width="8" height="10" fill="#3A3833"></rect></svg>
+      <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.24em; color: #9A9488">THE HALL OF</span>
+      <h1 style="margin: 0; font-size: 72px; font-weight: 300; font-style: italic; line-height: 1">Broken promises</h1>
+      <p style="margin: 8px 0 0; font-size: 19px; color: #9A9488">31 things I said I would do. I thought I was better than I am.</p>
+    </div>
+
+    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px">
+      <sc-for list="{{plaques}}" as="p" hint-placeholder-count="12">
+        <li style="display: flex">
+          <a href="DesktopBroken.dc.html" style="flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 200px; box-sizing: border-box; padding: 24px; border: 1px solid #2E2D2A; text-decoration: none; color: #D8D1C3">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #9A9488">
+              <span>NO. {{p.no}}</span>
+              <span style="display: flex; align-items: center; gap: 6px">
+                <svg width="9" height="12" sc-camel-view-box="0 0 22 30" aria-hidden="true"><path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857"></path></svg>
+                {{p.candles}}
+              </span>
+            </div>
+            <span style="font-size: 25px; line-height: 1.22; text-wrap: pretty">{{p.text}}</span>
+            <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #9A9488">{{p.dates}}</span>
+          </a>
+        </li>
+      </sc-for>
+    </ol>
+
+    <p style="margin: 0; text-align: center; font-size: 17px; font-style: italic; color: #9A9488">The first broken promise was No. 1, on 14 January 2026.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1180}}">
+class Component extends DCLogic {
+  renderVals() {
+    var rows = [
+      [31, 'Write the blog post about promises', '2 Sep', '2 Oct 2026', 3],
+      [30, 'Clean out the garage', '28 Aug', '27 Sep 2026', 0],
+      [29, 'Stop checking my phone in bed', '20 Aug', '19 Sep 2026', 12],
+      [28, 'Visit Grandma’s village before winter', '10 Aug', '9 Sep 2026', 5],
+      [27, 'Learn twenty words of Japanese', '1 Aug', '31 Aug 2026', 1],
+      [26, 'Floss every night', '22 Jul', '21 Aug 2026', 9],
+      [25, 'Finish the novel I started in 2019', '3 Jul', '2 Aug 2026', 27],
+      [24, 'Sort out the pension paperwork', '30 Jun', '30 Jul 2026', 0],
+      [23, 'Take the bike in for a service', '18 Jun', '18 Jul 2026', 2],
+      [22, 'Call Dimitris back', '9 Jun', '9 Jul 2026', 4],
+      [21, 'Swim before work on Fridays', '1 Jun', '1 Jul 2026', 6],
+      [20, 'Print the wedding photos', '24 May', '23 Jun 2026', 18]
+    ];
+    return {
+      plaques: rows.map(function (r) {
+        return { no: r[0], text: r[1], dates: 'Promised ' + r[2] + ' · broken ' + r[3], candles: r[4] };
+      })
+    };
+  }
+}
+</script>
+
+
+</body></html>

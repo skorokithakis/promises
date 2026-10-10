@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Make a promise (desktop)</title>
+<script src="61b26c66-ee40-428e-8522-4ada7a4b4927"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style></style>
+<style>
+body{margin:0;background:#F3F3F0}
+a{color:#18191B}a:hover{color:#000}
+textarea::placeholder{color:#9A9B9E}
+textarea:focus{outline:none}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F3F3F0; color: #18191B; font-family: 'Newsreader', Georgia, serif; display: flex; flex-direction: column">
+  <header style="border-bottom: 1px solid #E2E2DE">
+    <nav aria-label="Main" style="max-width: 1120px; margin: 0 auto; padding: 0 32px; min-height: 72px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="DesktopList.dc.html" style="font-size: 28px; text-decoration: none">Promises</a>
+      <div style="display: flex; gap: 28px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px">
+        <a href="DesktopList.dc.html" style="min-height: 44px; display: flex; align-items: center; text-decoration: none; color: #5E6064">Open</a>
+        <a href="DesktopHall.dc.html" style="min-height: 44px; display: flex; align-items: center; text-decoration: none; color: #5E6064">The hall (31)</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="flex: 1 1 auto; width: 100%; max-width: 760px; margin: 0 auto; box-sizing: border-box; padding: 96px 32px 80px; display: flex; flex-direction: column; gap: 40px">
+    <form style="display: flex; flex-direction: column; gap: 24px">
+      <label for="promise-desk" style="font-size: 24px; font-style: italic; color: #5E6064">I promise to</label>
+      <textarea id="promise-desk" rows="3" value="{{draft}}" sc-camel-on-change="{{onDraft}}" placeholder="finally fix that tap" style="width: 100%; box-sizing: border-box; border: 0; border-bottom: 1px solid #18191B; background: transparent; resize: none; padding: 0 0 16px; font-family: 'Newsreader', Georgia, serif; font-size: 52px; line-height: 1.15; color: #18191B"></textarea>
+    </form>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 4px" aria-hidden="true">
+        <sc-for list="{{days}}" as="d" hint-placeholder-count="30">
+          <span style="{{d.style}}"></span>
+        </sc-for>
+      </div>
+      <p style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; line-height: 1.6; color: #5E6064">This promise has 30 days of ink. Each day it fades a little. Keep it, or it goes to the hall of broken promises, forever.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px">
+      <a href="DesktopPromised.dc.html" style="height: 56px; padding: 0 40px; border-radius: 28px; background: #18191B; color: #F3F3F0; display: flex; align-items: center; text-decoration: none; font-size: 20px; font-style: italic">I promise</a>
+      <a href="DesktopBroken.dc.html" style="min-height: 44px; display: flex; align-items: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; color: #5E6064; text-decoration: none">Cancel</a>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var days = [];
+    for (var i = 0; i < 30; i++) {
+      var a = (1 - i / 30) * 0.88 + 0.12;
+      days.push({ style: 'flex: 1 1 0; height: 18px; border-radius: 1px; background: rgba(24,25,27,' + a.toFixed(3) + ')' });
+    }
+    var draft = (this.state && this.state.draft != null) ? this.state.draft : 'write the blog post about promises';
+    return {
+      days: days,
+      draft: draft,
+      onDraft: function (e) { self.setState({ draft: e.target.value }); }
+    };
+  }
+}
+</script>
+
+
+</body></html>

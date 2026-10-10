@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Promises</title>
+<script src="d5071f53-72b1-4ebd-b9d3-6f908996beb2"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style></style>
+<style>
+body{margin:0;background:#F3F3F0}
+a{color:#18191B}a:hover{color:#000}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F3F0; color: #18191B; font-family: 'Newsreader', Georgia, serif; display: flex; flex-direction: column">
+  <header style="padding: 28px 24px 16px; display: flex; flex-direction: column; gap: 6px">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+      <h1 style="margin: 0; font-size: 36px; font-weight: 400; letter-spacing: -0.01em">Promises</h1>
+      <sc-if value="{{hasHall}}" hint-placeholder-val="{{ true }}">
+      <a href="Hall.dc.html" aria-label="Hall of broken promises" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; border: 1px solid #D4D4CF">
+        <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2 2.5 3 4.2 3 5.8A3 3 0 0 1 9 8.8C9 7.2 10 5.5 12 3z"></path><path d="M9 14h6v7H9z"></path><path d="M12 11.8V14"></path></svg>
+      </a>
+      </sc-if>
+    </div>
+    <p style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 12px; color: #5E6064; letter-spacing: 0.02em">{{countsLine}}</p>
+  </header>
+
+  <ul style="list-style: none; margin: 0; padding: 0 24px; flex: 1 1 auto; overflow-y: auto; display: flex; flex-direction: column">
+    <sc-for list="{{items}}" as="item" hint-placeholder-count="8">
+      <li style="display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-top: 1px solid #E2E2DE">
+        <sc-if value="{{item.kept}}" hint-placeholder-val="{{ false }}">
+          <button type="button" aria-label="{{item.label}}" style="flex: none; width: 44px; height: 44px; margin: -10px 0 0 -10px; border: 0; background: none; padding: 0; display: flex; align-items: center; justify-content: center; cursor: default">
+            <span style="width: 22px; height: 22px; border-radius: 11px; background: #18191B; display: flex; align-items: center; justify-content: center">
+              <svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#F3F3F0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+            </span>
+          </button>
+        </sc-if>
+        <sc-if value="{{item.open}}" hint-placeholder-val="{{ true }}">
+          <a href="Kept.dc.html" aria-label="{{item.label}}" style="flex: none; width: 44px; height: 44px; margin: -10px 0 0 -10px; display: flex; align-items: center; justify-content: center">
+            <span style="{{item.ringStyle}}"></span>
+          </a>
+        </sc-if>
+        <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+          <span style="{{item.textStyle}}">{{item.text}}</span>
+          <div style="height: 2px; background: #E2E2DE; border-radius: 1px; overflow: hidden">
+            <div style="{{item.meterStyle}}"></div>
+          </div>
+          <span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: #5E6064; letter-spacing: 0.02em">{{item.meta}}</span>
+        </div>
+      </li>
+    </sc-for>
+    <sc-if value="{{hasHall}}" hint-placeholder-val="{{ true }}">
+    <li style="padding: 24px 0 32px; border-top: 1px solid #E2E2DE">
+      <a href="Hall.dc.html" style="font-style: italic; font-size: 16px; color: #5E6064; text-decoration: none; display: flex; align-items: center; gap: 8px; min-height: 44px">{{hallLine}}
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+    </li>
+    </sc-if>
+  </ul>
+
+  <div style="padding: 16px 24px 28px; background: #F3F3F0; border-top: 1px solid #E2E2DE">
+    <a href="Make.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 28px; background: #18191B; color: #F3F3F0; text-decoration: none; font-size: 19px; font-style: italic">Make a promise</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;daysPassed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:30,&quot;step&quot;:1,&quot;unit&quot;:&quot;days&quot;,&quot;default&quot;:0,&quot;section&quot;:&quot;Time&quot;},&quot;newUser&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;section&quot;:&quot;State&quot;},&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  renderVals() {
+    var LIFE = 30;
+    var days = Number(this.props.daysPassed == null ? 0 : this.props.daysPassed);
+    var kept = (this.state && this.state.kept) || {};
+    var self = this;
+    var base = [
+      { id: 'a', text: 'Call Mum on Sunday', age: 1, made: '9 Oct' },
+      { id: 'b', text: 'Fix the dripping tap in the bathroom', age: 4, made: '6 Oct' },
+      { id: 'c', text: 'Back up the photos from the summer', age: 9, made: '1 Oct' },
+      { id: 'd', text: 'Reply to Nikos about the boat trip', age: 13, made: '27 Sep' },
+      { id: 'e', text: 'Learn to make proper sourdough', age: 17, made: '23 Sep' },
+      { id: 'f', text: 'Go running three times a week', age: 21, made: '19 Sep' },
+      { id: 'g', text: 'Read The Dispossessed', age: 25, made: '15 Sep' },
+      { id: 'h', text: 'Write to my old teacher', age: 28, made: '12 Sep' }
+    ];
+    var newUser = !!this.props.newUser;
+    if (newUser) { base = base.slice(0, 2); }
+    var items = [];
+    var lost = 0;
+    var keptNow = 0;
+    base.forEach(function (p) {
+      var isKept = !!kept[p.id];
+      var left = LIFE - (p.age + days);
+      if (isKept) { keptNow++; }
+      if (!isKept && left <= 0) { lost++; return; }
+      var ink = isKept ? 1 : Math.max(0, Math.min(1, left / LIFE));
+      var alpha = (0.12 + 0.88 * Math.pow(ink, 0.8)).toFixed(3);
+      var blur = isKept ? 0 : (ink < 0.12 ? 1.1 : (ink < 0.25 ? 0.6 : (ink < 0.4 ? 0.25 : 0)));
+      var spacing = ((1 - ink) * 0.035).toFixed(3);
+      items.push({
+        id: p.id,
+        text: p.text,
+        kept: isKept,
+        open: !isKept,
+        label: (isKept ? 'Kept: ' : 'Keep this promise: ') + p.text,
+        textStyle: 'font-size: 20px; line-height: 1.3; color: rgba(24,25,27,' + alpha + '); filter: blur(' + blur + 'px); letter-spacing: ' + spacing + 'em; text-wrap: pretty',
+        ringStyle: 'width: 22px; height: 22px; border-radius: 11px; box-sizing: border-box; border: 1.5px solid rgba(24,25,27,' + alpha + ')',
+        meterStyle: 'height: 2px; width: ' + (ink * 100).toFixed(1) + '%; background: ' + (isKept ? '#18191B' : 'rgba(24,25,27,' + alpha + ')'),
+        meta: isKept ? 'Promised ' + p.made + ' · kept today' : 'Promised ' + p.made + ' · ' + left + (left === 1 ? ' day' : ' days') + ' of ink left',
+        keep: function () { var k = Object.assign({}, kept); k[p.id] = true; self.setState({ kept: k }); }
+      });
+    });
+    var openCount = items.length - keptNow;
+    var keptCount = (newUser ? 0 : 14) + keptNow;
+    var brokenCount = (newUser ? 0 : 31) + lost;
+    var hasHall = brokenCount > 0;
+    return {
+      items: items,
+      hasHall: hasHall,
+      countsLine: openCount + ' open · ' + keptCount + ' kept' + (hasHall ? ' · ' + brokenCount + ' broken' : ''),
+      hallLine: brokenCount === 1 ? 'Your first broken promise rests in the hall' : brokenCount + ' broken promises rest in the hall'
+    };
+  }
+}
+</script>
+
+
+</body></html>
