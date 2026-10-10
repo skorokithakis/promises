@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Promises">
+  <rect width="512" height="512" fill="#0f0f10"/>
+  <!-- The hall flame (src/screens/shared.tsx), centred on the app's dark background. -->
+  <g transform="translate(256 256) scale(16.5) translate(-11 -9.75)">
+    <path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857"/>
+  </g>
+</svg>

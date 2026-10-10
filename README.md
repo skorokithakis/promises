@@ -17,6 +17,17 @@ pnpm build   # static site in dist/
 pnpm test
 ```
 
+## Install on your phone
+
+Promises is an installable, offline-capable app. After the first visit it works
+without a network connection.
+
+- **iPhone (Safari):** tap Share, then **Add to Home Screen**.
+- **Android (Chrome):** open the menu, then **Install app**.
+
+Note: on iPhone the installed app has its own storage, separate from Safari. A
+promise made in the installed app will not appear in Safari, and vice versa.
+
 ## License
 
 [GNU AGPLv3](LICENSE).

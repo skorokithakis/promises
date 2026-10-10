@@ -1,4 +1,5 @@
 import { render } from 'preact'
+import { registerSW } from 'virtual:pwa-register'
 import './fonts'
 import './styles/tokens.css'
 import './styles/global.css'
@@ -14,3 +15,15 @@ if (!root) {
 }
 
 render(<App />, root)
+
+// Register the service worker so the app works offline. `autoUpdate` handles
+// refreshing to a new version; `immediate` registers on load rather than on the
+// window `load` event.
+registerSW({ immediate: true })
+
+// Ask the browser to keep our localStorage from being evicted. Best effort only:
+// the result (and any failure) is deliberately ignored.
+const storage = navigator.storage
+if (storage && typeof storage.persist === 'function') {
+  storage.persist().catch(() => {})
+}

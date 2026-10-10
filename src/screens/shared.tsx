@@ -123,18 +123,32 @@ function CandleFlame({
   )
 }
 
+const THEME_COLOR_LIGHT = '#f3f3f0'
+const THEME_COLOR_HALL = '#0f0f10'
+
+function setThemeColor(color: string): void {
+  const meta = document.querySelector('meta[name="theme-color"]')
+  if (!meta) return
+  meta.setAttribute('content', color)
+}
+
 /**
  * Applies the dark hall theme to the document root while a hall screen is
  * mounted, restoring the light theme on unmount. `enabled` lets a screen that
  * falls back to `NotFound` (an unknown id) keep the light theme.
+ *
+ * The browser/OS chrome colour (the `theme-color` meta tag) follows the screen,
+ * so the installed app's status bar matches the hall's dark background.
  */
 export function useHallTheme(enabled = true): void {
   useEffect(() => {
     if (!enabled) return
     const root = document.documentElement
     root.setAttribute('data-theme', 'hall')
+    setThemeColor(THEME_COLOR_HALL)
     return () => {
       root.setAttribute('data-theme', 'light')
+      setThemeColor(THEME_COLOR_LIGHT)
     }
   }, [enabled])
 }
