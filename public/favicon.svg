@@ -2,6 +2,6 @@
   <rect width="512" height="512" fill="#0f0f10"/>
   <!-- The hall flame (src/screens/shared.tsx), centred on the app's dark background. -->
   <g transform="translate(256 256) scale(16.5) translate(-11 -9.75)">
-    <path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857"/>
+    <path d="M11 18.5C7.7 18.5 5 15.8 5 12.6C5 9.4 7.4 7.6 8.6 4.6C9 6.6 9.9 7.8 10.9 8.4C10.9 5.6 12.1 3 14.2 1C14 3.8 14.9 5.6 15.8 7.4C16.6 9 17 10.6 17 12.6C17 15.8 14.3 18.5 11 18.5Z" fill="#E3A857"/>
   </g>
 </svg>

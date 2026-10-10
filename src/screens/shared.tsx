@@ -14,6 +14,15 @@ import { keptMeta, openMeta } from '../format'
 import { navigate } from '../router'
 import { useNow } from '../useNow'
 
+/**
+ * The one flame shape used everywhere: hall, candles, brand mark, and (copied)
+ * public/favicon.svg, from which the app icon PNGs are exported. In a 22x30
+ * viewBox, bounding box x 5..17, y 1..18.5, leaving room for a candle below.
+ * If you change it, update favicon.svg and re-export the PNGs.
+ */
+const FLAME_PATH =
+  'M11 18.5C7.7 18.5 5 15.8 5 12.6C5 9.4 7.4 7.6 8.6 4.6C9 6.6 9.9 7.8 10.9 8.4C10.9 5.6 12.1 3 14.2 1C14 3.8 14.9 5.6 15.8 7.4C16.6 9 17 10.6 17 12.6C17 15.8 14.3 18.5 11 18.5Z'
+
 /** Flame in an arch, the hall's mark on the list icon button. */
 function HallIcon() {
   return (
@@ -28,7 +37,13 @@ function HallIcon() {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d="M12 3c2 2.5 3 4.2 3 5.8A3 3 0 0 1 9 8.8C9 7.2 10 5.5 12 3z" />
+      {/* The shared flame at half size, tip at y=3, base at the wick (y=11.75).
+          The stroke is doubled to cancel the scale and match the other strokes. */}
+      <path
+        d={FLAME_PATH}
+        transform="translate(12 3) scale(0.5) translate(-11 -1)"
+        strokeWidth="3"
+      />
       <path d="M9 14h6v7H9z" />
       <path d="M12 11.8V14" />
     </svg>
@@ -55,7 +70,7 @@ function ArrowIcon() {
 function FlameIcon() {
   return (
     <svg width="10" height="14" viewBox="0 0 22 30" aria-hidden="true">
-      <path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857" />
+      <path d={FLAME_PATH} fill="#E3A857" />
     </svg>
   )
 }
@@ -100,7 +115,7 @@ function BackIcon() {
 function HallFlame({ className }: { className?: string }) {
   return (
     <svg class={className} viewBox="0 0 22 30" aria-hidden="true">
-      <path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857" />
+      <path d={FLAME_PATH} fill="#E3A857" />
       <rect x="7" y="20" width="8" height="10" fill="#3A3833" />
     </svg>
   )
@@ -118,7 +133,7 @@ function CandleFlame({
 }) {
   return (
     <svg class={className} width={width} height={height} viewBox="0 0 22 30" aria-hidden="true">
-      <path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857" />
+      <path d={FLAME_PATH} fill="#E3A857" />
     </svg>
   )
 }
@@ -186,7 +201,7 @@ export function BrandMark() {
     <svg class="brand-mark" viewBox="0 0 512 512" aria-hidden="true">
       <rect width="512" height="512" fill="#0f0f10" />
       <g transform="translate(256 256) scale(16.5) translate(-11 -9.75)">
-        <path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857" />
+        <path d={FLAME_PATH} fill="#E3A857" />
       </g>
     </svg>
   )
