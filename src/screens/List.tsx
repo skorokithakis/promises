@@ -80,6 +80,9 @@ export function List() {
           <div class="list-block">
             <p class="counts counts--desktop">{countsLine(totals)}</p>
             <ul class="promise-list">
+              {items.length === 0 && (
+                <li class="list-empty">Don't make promises you can't keep.</li>
+              )}
               {items.map((promise) => (
                 <PromiseItem key={promise.id} promise={promise} now={now} />
               ))}
