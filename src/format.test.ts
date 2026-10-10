@@ -14,8 +14,7 @@ import {
   keptMeta,
   keptSummary,
   madeDetail,
-  openMetaDesktop,
-  openMetaMobile,
+  openMeta,
   timesLabel,
 } from './format'
 
@@ -78,14 +77,8 @@ describe('hallLine', () => {
 })
 
 describe('promise meta lines', () => {
-  it('shows only the promise date on mobile', () => {
-    expect(openMetaMobile(make({ createdAt: at(2026, 9, 9) }))).toBe('Promised 9 Oct')
-  })
-
-  it('uses the shorter desktop wording', () => {
-    expect(openMetaDesktop(make({ createdAt: at(2026, 9, 9) }), at(2026, 9, 10))).toBe(
-      'Promised 9 Oct · 29 days left',
-    )
+  it('shows only the promise date for open promises', () => {
+    expect(openMeta(make({ createdAt: at(2026, 9, 9) }))).toBe('Promised 9 Oct')
   })
 
   it('marks kept promises as kept today', () => {
@@ -94,18 +87,9 @@ describe('promise meta lines', () => {
 })
 
 describe('keptSummary', () => {
-  it('reports the days of ink to spare', () => {
+  it('shows the promised and kept dates', () => {
     const promise = make({ createdAt: at(2026, 9, 1), keptAt: at(2026, 9, 10) })
-    expect(keptSummary(promise)).toBe(
-      'Promised 1 Oct. Kept 10 Oct, with 21 days of ink to spare.',
-    )
-  })
-
-  it('keeps a promise made and kept on the same day fully inked', () => {
-    const promise = make({ createdAt: at(2026, 9, 10), keptAt: at(2026, 9, 10) })
-    expect(keptSummary(promise)).toBe(
-      'Promised 10 Oct. Kept 10 Oct, with 30 days of ink to spare.',
-    )
+    expect(keptSummary(promise)).toBe('Promised 1 Oct. Kept 10 Oct.')
   })
 })
 

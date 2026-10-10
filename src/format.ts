@@ -4,7 +4,7 @@
  * All functions are pure so they can be unit-tested without a DOM: screens call
  * them with an explicit record/`now` and render the returned strings.
  */
-import { brokenDate, daysLeft, numberWord } from './promises'
+import { brokenDate, numberWord } from './promises'
 import type { Counts, PromiseRecord } from './promises'
 
 const MONTHS_SHORT = [
@@ -73,10 +73,6 @@ export function formatSealLabel(date: Date): string {
   return `${date.getDate()} ${MONTHS_LONG[date.getMonth()] ?? ''} ${date.getFullYear()}`
 }
 
-function pluralDays(value: number): string {
-  return value === 1 ? '1 day' : `${value} days`
-}
-
 /** `3 open · 14 kept · 31 broken`, dropping the broken count when there are none. */
 export function countsLine(counts: Counts): string {
   const line = `${counts.open} open · ${counts.kept} kept`
@@ -90,16 +86,9 @@ export function hallLine(broken: number): string {
     : `${broken} broken promises rest in the hall`
 }
 
-/** Open promise meta on small screens: `Promised 9 Oct`. No countdown, on purpose. */
-export function openMetaMobile(promise: PromiseRecord): string {
+/** Open promise meta shown in the list: `Promised 9 Oct`. No countdown, on purpose. */
+export function openMeta(promise: PromiseRecord): string {
   return `Promised ${formatShortDate(new Date(promise.createdAt))}`
-}
-
-/** Open promise meta on wide screens: `Promised 9 Oct · 29 days left`. */
-export function openMetaDesktop(promise: PromiseRecord, now: Date): string {
-  return `Promised ${formatShortDate(new Date(promise.createdAt))} · ${pluralDays(
-    daysLeft(promise, now),
-  )} left`
 }
 
 /** Kept promise meta shown in the list: `Promised 1 Oct · kept today`. */
@@ -107,13 +96,13 @@ export function keptMeta(promise: PromiseRecord): string {
   return `Promised ${formatShortDate(new Date(promise.createdAt))} · kept today`
 }
 
-/** Kept screen detail: `Promised 1 Oct. Kept 10 Oct, with 21 days of ink to spare.` */
+/** Kept screen detail: `Promised 1 Oct. Kept 10 Oct.` */
 export function keptSummary(promise: PromiseRecord): string {
   const createdAt = new Date(promise.createdAt)
   const keptAt = new Date(promise.keptAt ?? promise.createdAt)
   return `Promised ${formatShortDate(createdAt)}. Kept ${formatShortDate(
     keptAt,
-  )}, with ${pluralDays(daysLeft(promise, keptAt))} of ink to spare.`
+  )}.`
 }
 
 /** Made screen detail: `Promised 10 Oct 2026 · the ink runs out 9 Nov 2026`. */

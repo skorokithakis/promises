@@ -10,7 +10,7 @@ import {
   usePromises,
 } from '../promises'
 import { markJustKept } from '../justKept'
-import { keptMeta, openMetaDesktop, openMetaMobile } from '../format'
+import { keptMeta, openMeta } from '../format'
 import { navigate } from '../router'
 import { useNow } from '../useNow'
 
@@ -240,9 +240,7 @@ export function PromiseItem({ promise, now }: { promise: PromiseRecord; now: Dat
     backgroundColor: kept ? '#18191B' : `rgba(24,25,27,${alpha})`,
   }
   const label = `${kept ? 'Kept: ' : 'Keep this promise: '}${promise.text}`
-  const meta = kept
-    ? keptMeta(promise)
-    : { mobile: openMetaMobile(promise), desktop: openMetaDesktop(promise, now) }
+  const meta = kept ? keptMeta(promise) : openMeta(promise)
 
   return (
     <li class="promise">
@@ -273,12 +271,7 @@ export function PromiseItem({ promise, now }: { promise: PromiseRecord; now: Dat
         <div class="promise__meter">
           <div class="promise__meter-fill" style={meterStyle} />
         </div>
-        <span class="promise__meta promise__meta--mobile">
-          {typeof meta === 'string' ? meta : meta.mobile}
-        </span>
-        <span class="promise__meta promise__meta--desktop">
-          {typeof meta === 'string' ? meta : meta.desktop}
-        </span>
+        <span class="promise__meta">{meta}</span>
       </div>
     </li>
   )

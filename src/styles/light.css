@@ -243,10 +243,6 @@
   letter-spacing: 0.02em;
 }
 
-.promise__meta--desktop {
-  display: none;
-}
-
 .hall-row {
   padding: 24px 0 32px;
   border-top: 1px solid var(--rule);
@@ -776,14 +772,6 @@
 
   .promise__meta {
     font-size: 12px;
-  }
-
-  .promise__meta--mobile {
-    display: none;
-  }
-
-  .promise__meta--desktop {
-    display: inline;
   }
 
   .hall-row,

@@ -126,7 +126,7 @@ class Component extends DCLogic {
         textStyle: 'flex: 1 1 320px; min-width: 0; font-size: 24px; line-height: 1.3; color: rgba(24,25,27,' + alpha + '); filter: blur(' + blur + 'px); letter-spacing: ' + spacing + 'em; text-wrap: pretty',
         ringStyle: 'width: 24px; height: 24px; border-radius: 12px; box-sizing: border-box; border: 1.5px solid rgba(24,25,27,' + alpha + ')',
         meterStyle: 'height: 2px; width: ' + (ink * 100).toFixed(1) + '%; background: ' + (isKept ? '#18191B' : 'rgba(24,25,27,' + alpha + ')'),
-        meta: isKept ? 'Promised ' + p.made + ' · kept today' : 'Promised ' + p.made + ' · ' + left + (left === 1 ? ' day' : ' days') + ' left',
+        meta: isKept ? 'Promised ' + p.made + ' · kept today' : 'Promised ' + p.made,
         keep: function () { var k = Object.assign({}, kept); k[p.id] = true; self.setState({ kept: k }); }
       });
     });
