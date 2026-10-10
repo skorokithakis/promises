@@ -55,13 +55,20 @@ a {
 /* The "Promises" wordmark with the app icon to its left. */
 .brand {
   display: inline-flex;
-  align-items: center;
+  /* Not `center`: that centres on the line box, and Newsreader's tall ascender
+     space puts the letters below that centre. */
+  align-items: baseline;
   gap: 0.3em;
 }
 
-/* Close to the wordmark's cap height. em-based so it scales with each title. */
+/* em-based so it scales with each title. Baseline alignment puts the icon's
+   bottom on the text baseline; `top` then moves it down by half of the amount
+   it is taller than Newsreader's cap height (0.68em), so it centres on the
+   capitals. */
 .brand-mark {
   flex: none;
+  position: relative;
+  top: 0.06em;
   width: 0.8em;
   height: 0.8em;
   border-radius: 0.18em;
