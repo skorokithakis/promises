@@ -45,10 +45,7 @@ export function Make() {
 
         <div class="make-ink">
           <Segments />
-          <p class="explainer">
-            This promise has 30 days of ink. Each day it fades a little. Keep it, or it goes to the
-            hall of broken promises, forever.
-          </p>
+          <p class="explainer">You'd better keep your promise.</p>
         </div>
 
         <div class="make-actions">

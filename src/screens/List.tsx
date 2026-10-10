@@ -97,10 +97,7 @@ export function List() {
 
         <aside class="list-aside">
           {hasHall && <RecentlyBroken promises={recentBroken} />}
-          <p class="explainer">
-            Every promise has 30 days of ink. Each day it fades a little. Keep it, or it goes to
-            the hall, forever.
-          </p>
+          <p class="explainer">You'd better keep your promises.</p>
         </aside>
       </main>
 
