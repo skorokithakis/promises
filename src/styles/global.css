@@ -51,3 +51,18 @@ a {
   font-style: italic;
   color: var(--muted);
 }
+
+/* The "Promises" wordmark with the app icon to its left. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+/* Close to the wordmark's cap height. em-based so it scales with each title. */
+.brand-mark {
+  flex: none;
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 0.18em;
+}

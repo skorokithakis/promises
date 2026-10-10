@@ -10,7 +10,7 @@ import type { PromiseRecord } from '../promises'
 import { countsLine, hallLine } from '../format'
 import { useNow } from '../useNow'
 import { navigate } from '../router'
-import { ArrowIcon, DesktopNav, HallIcon, PromiseItem, RecentlyBroken } from './shared'
+import { ArrowIcon, BrandMark, DesktopNav, HallIcon, PromiseItem, RecentlyBroken } from './shared'
 
 function byNewest(a: PromiseRecord, b: PromiseRecord): number {
   return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -42,7 +42,10 @@ export function List() {
 
       <header class="list-header">
         <div class="list-header__row">
-          <h1 class="list-header__title">Promises</h1>
+          <h1 class="list-header__title brand">
+            <BrandMark />
+            Promises
+          </h1>
           {hasHall && (
             <a class="icon-button" href="#/hall" aria-label="Hall of broken promises">
               <HallIcon />

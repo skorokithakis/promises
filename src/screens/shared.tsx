@@ -177,6 +177,21 @@ export function Segments({ animated = false }: { animated?: boolean }) {
   )
 }
 
+/**
+ * The app icon (public/favicon.svg) shown next to the "Promises" wordmark.
+ * Sized in `em` by the `.brand-mark` CSS so it tracks the wordmark's font size.
+ */
+export function BrandMark() {
+  return (
+    <svg class="brand-mark" viewBox="0 0 512 512" aria-hidden="true">
+      <rect width="512" height="512" fill="#0f0f10" />
+      <g transform="translate(256 256) scale(16.5) translate(-11 -9.75)">
+        <path d="M11 1c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C5 9.5 7 6 11 1z" fill="#E3A857" />
+      </g>
+    </svg>
+  )
+}
+
 /** Top navigation shown on wide screens. `active` underlines the current link. */
 export function DesktopNav({ active }: { active?: 'open' | 'hall' }) {
   const promises = usePromises()
@@ -187,7 +202,8 @@ export function DesktopNav({ active }: { active?: 'open' | 'hall' }) {
   return (
     <header class="desk-nav">
       <nav aria-label="Main">
-        <a class="desk-nav__brand" href="#/">
+        <a class="desk-nav__brand brand" href="#/">
+          <BrandMark />
           Promises
         </a>
         <div class="desk-nav__links">
